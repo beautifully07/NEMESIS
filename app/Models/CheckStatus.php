@@ -11,6 +11,6 @@ class CheckStatus extends Model
     use HasFactory, SoftDeletes;
     protected $dates = ['deleted_at'];
     public function registration(){
-        return $this->belongsTo(Registration::class);
+        return $this->belongsTo(Registration::class, 'registration_id');
     }
 }
