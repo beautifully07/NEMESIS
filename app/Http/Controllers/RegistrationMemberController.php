@@ -38,7 +38,7 @@ class RegistrationMemberController extends Controller
             'information' => 'Silahkan registrasi paket anda',
             'memberPackages' => MemberPackage::get(),
             'trainers' => Trainer::get(),
-            'configurations' => app('configurations'),           
+            'configurations' => app('configurations'),          
         ];
 
         return view('registration-member.form', $data);
