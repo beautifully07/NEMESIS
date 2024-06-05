@@ -22,7 +22,7 @@ class RegistrationMemberController extends Controller
             'title' => 'Member Registration Data',
             'information' => 'Berikut adalah data registrasi member anda.',
             'registrations' => $registrations,
-            "configurations" => Configuration::get(),
+            'configurations' => app('configurations'),
         ];
 
         return view('registration-member.index', $data);
@@ -38,7 +38,7 @@ class RegistrationMemberController extends Controller
             'information' => 'Silahkan registrasi paket anda',
             'memberPackages' => MemberPackage::get(),
             'trainers' => Trainer::get(),
-            "configurations" => Configuration::get(),            
+            'configurations' => app('configurations'),           
         ];
 
         return view('registration-member.form', $data);
