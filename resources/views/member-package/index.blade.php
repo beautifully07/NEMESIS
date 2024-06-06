@@ -17,7 +17,7 @@
 <a href="{{ URL::to('member-package/create') }}" class="btn btn-primary mb-3">
     <i class="fas fa-plus" aria-hidden="true"></i> Add
 </a>
-
+<!-- uji coba -->
 <table id="datatable1" class="table table-bordered table-striped">
     <thead>
         <tr>
