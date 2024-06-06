@@ -17,7 +17,7 @@
 <a href="{{ URL::to('member-package/create') }}" class="btn btn-primary mb-3">
     <i class="fas fa-plus" aria-hidden="true"></i> Add
 </a>
-
+<!-- uji coba -->
 <table id="datatable1" class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -28,11 +28,18 @@
             <th>Duration Day</th>
             <th>With Trainer</th>
             <th>Duration Trainer</th>
+            <th>Status</th>
             <th width="10%">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach($memberPackages as $index => $memberPackage)
+        @php
+                $createdDate = strtotime($memberPackage->created_at);
+                $expiryDate = strtotime ($createdDate) / (60 * 60 * 24);
+                $currentDate = time();
+                $duration = $expiryDate; // Menggunakan durasi sebagai expiryDate
+        @endphp
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $memberPackage->name }}</td>
@@ -41,6 +48,10 @@
                 <td>{{ $memberPackage->duration_day }}</td>
                 <td>{{ $memberPackage->is_with_trainer ? 'Yes' : 'No' }}</td>
                 <td>{{ $memberPackage->duration_trainer }}</td>
+                <td>@if ($expiryDate > $createdDate)   
+             Check Out
+            @else Check In 
+        @endif</td>
                 <td>
                     <div class="d-flex">
                         <a href="{{ URL::to('member-package/' . $memberPackage->id) }}" class="btn btn-sm btn-info mr-2">
