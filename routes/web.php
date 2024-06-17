@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckStatusMemberController;
 use App\Http\Controllers\MemberProfileController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
@@ -68,7 +69,10 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 
 // Normal Users Route List
 Route::middleware(['auth', 'user-access:member'])->group(function () {
-    Route::resource('/registration-member', RegistrationMemberController::class);  
+    Route::resource('/registration-member', RegistrationMemberController::class);
+    Route::resource('/check-status-member', CheckStatusMemberController::class);
+    Route::post('/checkout', [RegistrationMemberController::class, 'checkout']);
+    
 });
 
 // Normal Admin Route List
