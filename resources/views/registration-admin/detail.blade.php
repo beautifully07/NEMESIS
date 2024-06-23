@@ -66,27 +66,31 @@
 
         <div class="form-group">
             <label for="end_date">End Date</label>
-            <input type="text" id="end_date" name="end_date" class="form-control @error('end_date')is-invalid @enderror" value="{{DateFormat($registration->end_date) }}" readonly>
+            <input type="text" id="end_date" name="end_date" class="form-control @error('end_date') is-invalid @enderror" value="{{ AddDay($registration->start_date, $registration->memberPackage->duration_day) }}" readonly>
             @error('end_date')
             <div class="invalid-feedback">
                 {{ $message }}
-            @enderror                   
-        </div>
+            </div>
+            @enderror
+    </div>
 
+            @if($registration->trainer_id)
         <div class="form-group">
             <label for="trainer_id">Trainer</label>
-            <select class="form-control @error('trainer_id')is-invalid @enderror" name="trainer_id" id="trainer_id" disabled>
+            <select class="form-control @error('trainer_id') is-invalid @enderror" name="trainer_id" id="trainer_id" disabled>
                 @foreach($trainers as $trainer)
-                    <option value="{{ $trainer->id }}" {{ $registration->trainer_id == $trainer->id ? 'selected' : '' }}>{{ $trainer->name }}</option>    
+                    <option value="{{ $trainer->id }}" {{ $registration->trainer_id == $trainer->id ? 'selected' : '' }}>
+                        {{ $trainer->name }}
+                    </option>
                 @endforeach
             </select>
             @error('trainer_id')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
-            @enderror                   
-        </div> 
-
+            @enderror
+        </div>
+        @endif 
         <div class="form-group">
             <label for="user_id">Admin</label>
             <input type="text" id="user_id" name="user_id" class="form-control @error('user_id')is-invalid @enderror" value="{{ isset($registration->user) ? $registration->user->name : 'Self Registration' }}" readonly>
