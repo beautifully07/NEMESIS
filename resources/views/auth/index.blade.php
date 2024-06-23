@@ -172,8 +172,8 @@
         <form action="{{ URL::to('/login') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="InputEmail" class="form-label">Email</label>
-                <input type="text" class="form-control" name="username" id="InputEmail" placeholder="Enter your email">
+                <label for="InputEmail" class="form-label">Username</label>
+                <input type="text" class="form-control" name="username" id="InputEmail" placeholder="Enter your username">
             </div>
             <div class="form-group">
                 <label for="InputPassword" class="form-label">Password</label>
@@ -182,12 +182,12 @@
             <p class="mb-2">
                 <a href="{{route('forgot-password')}}" style="font-size: 12px; margin-top: 1%">forgot password?</a>
             </p>
-            <span class="small">Don't have an account? <button class="btn btn-link btn-sm" id="showRegisterForm" type="button">Register</button></span>
-            <button type="submit" class="btn btn-danger">SUBMIT</button>
+            <button type="submit" class="btn btn-danger">Sign In</button>
             <a href="{{ route('redirect') }}" class="btn btn-google">
                 <img src="assets/images/google.png" alt="Google Logo" class="google-logo">
                 Login With Google
             </a>
+            <span class="small">Don't have an account? <button class="btn btn-link btn-sm" id="showRegisterForm" type="button">Register</button></span>
         </form>
     </div>
     <div id="registerContainer" class="form-container register-container" style="display:none;margin: 150px;">
@@ -223,7 +223,7 @@
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    <button type="submit" class="btn btn-danger btn-block">Sign Up</button>
                 </div>
             </div>
             <span class="small">Already have an account? <button class="btn btn-link btn-sm" id="showLoginForm" type="button">Login</button></span>

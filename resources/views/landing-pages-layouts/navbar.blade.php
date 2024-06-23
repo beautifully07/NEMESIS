@@ -15,7 +15,7 @@
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="{{ route('home') }}" class="{{ $currentRoute == 'home' ? 'active' : '' }}">Home</a></li>
-                            @if ($currentRoute == 'member-profile' || $routePrefix == 'registration-member')
+                            @if ($currentRoute == 'member-profile' || $routePrefix == 'registration-member' || $routePrefix == 'check-status-member')
                                 <li class="scroll-to-section"><a href="{{ route('member-profile') }}" class="{{ $currentRoute == 'member-profile' ? 'active' : '' }}">Your Profile</a></li>
                                 <li class="main-button"><a href="{{ route('logout') }}">Logout</a></li>
                             @else
