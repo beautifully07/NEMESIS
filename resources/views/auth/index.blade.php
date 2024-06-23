@@ -173,7 +173,7 @@
             @csrf
             <div class="form-group">
                 <label for="InputEmail" class="form-label">Username</label>
-                <input type="text" class="form-control" name="username" id="InputEmail" placeholder="Enter your username">
+                <input type="text" class="form-control" name="username" id="InputEmail" placeholder="Enter your email">
             </div>
             <div class="form-group">
                 <label for="InputPassword" class="form-label">Password</label>
@@ -182,69 +182,71 @@
             <p class="mb-2">
                 <a href="{{route('forgot-password')}}" style="font-size: 12px; margin-top: 1%">forgot password?</a>
             </p>
-            <button type="submit" class="btn btn-danger">Sign In</button>
+            <span class="small">Don't have an account? <button class="btn btn-link btn-sm" id="showRegisterForm" type="button">Register</button></span>
+            <button type="submit" class="btn btn-danger">SUBMIT</button>
             <a href="{{ route('redirect') }}" class="btn btn-google">
                 <img src="assets/images/google.png" alt="Google Logo" class="google-logo">
                 Login With Google
             </a>
-            <span class="small">Don't have an account? <button class="btn btn-link btn-sm" id="showRegisterForm" type="button">Register</button></span>
         </form>
     </div>
-    <div id="registerContainer" class="form-container register-container" style="display:none; margin: 150px;">
+    <div id="registerContainer" class="form-container register-container" style="display:none;margin: 150px;">
         <div class="text-center">
             <h1><i>SIGN-UP</i></h1>
             <h2>YOUR ACCOUNT</h2>
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <form action="{{ route('register') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-                <!-- Menampilkan Pesan Error -->
-                @if ($errors->has('email'))
-                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                @endif
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
+                @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-                <!-- Menampilkan Pesan Error -->
-                @if ($errors->has('username'))
-                    <span class="text-danger">{{ $errors->first('username') }}</span>
-                @endif
+                <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}" required>
+                @error('username')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
+                @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" name="address" required>
+                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required>
+                @error('address')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="contact" class="form-label">Contact</label>
-                <input type="text" class="form-control" id="contact" name="contact" required>
+                <input type="text" class="form-control @error('contact') is-invalid @enderror" id="contact" name="contact" value="{{ old('contact') }}" required>
+                @error('contact')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-danger btn-block">Sign Up</button>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
                 </div>
             </div>
             <span class="small">Already have an account? <button class="btn btn-link btn-sm" id="showLoginForm" type="button">Login</button></span>
         </form>
+    </div>
 
     <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
